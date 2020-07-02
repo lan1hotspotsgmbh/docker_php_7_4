@@ -19,6 +19,7 @@ RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libz
     && docker-php-ext-enable imagick \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-enable redis \
+    && pecl install radius-1.4.0b1 && docker-php-ext-enable radius \
     && pecl clear-cache \
     && docker-php-source delete \
     && rm -rf /tmp/pear \
