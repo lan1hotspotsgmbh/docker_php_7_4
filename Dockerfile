@@ -7,7 +7,7 @@ RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libz
     && docker-php-ext-configure ldap \
     && docker-php-ext-configure hash --with-mhash \
     && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
-    && docker-php-ext-install -j$(nproc) bcmath bz2 calendar ctype curl dba gd pdo  pdo_mysql mysqli pdo_odbc xml json zip fileinfo ftp iconv imap intl mbstring  opcache session snmp simplexml soap sockets xmlrpc  xmlwriter \
+    && docker-php-ext-install -j$(nproc) exif bcmath bz2 calendar ctype curl dba gd pdo  pdo_mysql mysqli pdo_odbc xml json zip fileinfo ftp iconv imap intl mbstring  opcache session snmp simplexml soap sockets xmlrpc  xmlwriter \
     && docker-php-ext-enable mbstring \
     && export CFLAGS="-I/usr/src/php" \
     && docker-php-ext-install -j$(nproc) xmlreader xmlwriter pdo_sqlite \
