@@ -26,16 +26,14 @@ RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libz
     && apk del --purge autoconf g++ make build-base \
     && rm -rf /var/cache/apk/* /usr/src/* /tmp/* /usr/lib/php/build \
     && printf '[PHP]\ndate.timezone = "Europe/Berlin"\n' > /usr/local/etc/php/conf.d/tzone.ini \
-    && wget https://getcomposer.org/download/1.10.7/composer.phar -O /usr/local/bin/composer \
+    && wget https://getcomposer.org/download/1.10.15/composer.phar -O /usr/local/bin/composer \
     && chmod 777 /usr/local/bin/composer \
-    && wget https://browscap.org/stream?q=Full_PHP_BrowsCapINI -O /usr/local/etc/php/php_browscap.ini
-
-RUN { \
+    && wget https://browscap.org/stream?q=Full_PHP_BrowsCapINI -O /usr/local/etc/php/php_browscap.ini \
+    && { \
         echo '[browscap]'; \
-	echo 'browscap = "/usr/local/etc/php/php_browscap.ini"'; \
-    } > /usr/local/etc/php/conf.d/browscap.ini
-
-RUN { \
+        echo 'browscap = "/usr/local/etc/php/php_browscap.ini"'; \
+    } > /usr/local/etc/php/conf.d/browscap.ini \
+  && { \
 	echo '[Session]'; \
 	echo 'session.save_handler = files'; \
 	echo 'session.use_strict_mode = 0'; \
@@ -59,14 +57,12 @@ RUN { \
 	echo 'session.hash_function = 0'; \
 	echo 'session.hash_bits_per_character = 5'; \
 	echo 'url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"'; \
-} > /usr/local/etc/php/conf.d/session.ini
-
-RUN { \
+} > /usr/local/etc/php/conf.d/session.ini \
+&& { \
     echo '[global]'; \
     echo 'include=etc/php-fpm.d/*.conf'; \
-    } > /usr/local/etc/php-fpm.conf
-
-RUN { \
+    } > /usr/local/etc/php-fpm.conf \
+&& { \
     echo '[www]'; \
     echo 'user = www-data'; \
     echo 'group = www-data'; \
