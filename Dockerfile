@@ -32,6 +32,9 @@ RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libz
     && { \
       echo '[PHP]\ndate.timezone = "Europe/Berlin"'; \
     } > /usr/local/etc/php/conf.d/tzone.ini \
+    && { \
+      echo '[PHP]\nmemory_limit=1G'; \
+    } > /usr/local/etc/php/conf.d/memory-limit.ini \
     && wget https://browscap.org/stream?q=Full_PHP_BrowsCapINI -O /usr/local/etc/php/php_browscap.ini \
     && { \
           echo '[browscap]'; \
