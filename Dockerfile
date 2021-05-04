@@ -1,5 +1,7 @@
 FROM php:7.4-fpm-alpine
-RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libzip-dev build-base autoconf \
+RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libzip-dev build-base autoconf supervisor bash \
+    && sed -i 's/bin\/ash/bin\/bash/g' /etc/passwd \
+    && mkdir -p /etc/supervisor.d/ \
     && apk add --no-cache oniguruma-dev libmcrypt-dev autoconf g++ gcc make build-base libmcrypt-dev bzip2-dev curl-dev libxml2-dev libjpeg-turbo-dev libpng-dev krb5-dev imap-dev icu-dev openldap-dev libmcrypt-dev unixodbc-dev libxml2-dev libzip-dev libxslt-dev net-snmp-dev libwebp-dev libxpm-dev freetds-dev freetype-dev sqlite-dev imagemagick-dev \
     && docker-php-ext-configure gd --with-xpm --with-webp --with-jpeg --with-freetype \
     && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
