@@ -26,10 +26,10 @@ RUN apk add -U --no-cache libpng-dev libmcrypt-dev unixodbc-dev libxml2-dev libz
     && pecl clear-cache \
     && docker-php-source delete \
     && rm -rf /tmp/pear \
-    && apk del --purge autoconf g++ make build-base .build-deps \
+    && apk del --purge autoconf g++ make build-base \
     && rm -rf /var/cache/apk/* /usr/src/* /tmp/* /usr/lib/php/build \
     \
-    && wget https://getcomposer.org/download/2.0.7/composer.phar -O /usr/local/bin/composer \
+    && wget https://getcomposer.org/download/2.0.9/composer.phar -O /usr/local/bin/composer \
     && chmod 777 /usr/local/bin/composer \
     && { \
       echo '[PHP]\ndate.timezone = "Europe/Berlin"'; \
